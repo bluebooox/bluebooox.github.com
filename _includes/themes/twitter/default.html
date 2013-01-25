@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
@@ -43,10 +43,17 @@
 
       <div class="content">
         {{ content }}
+
+<ul class="posts">
+  {% for post in site.posts %}
+  <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+
       </div>
 
       <footer>
-        <p>&copy; {{ site.author.name }} 2012 
+        <p>&copy; {{ site.author.name }} 2012
           with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>

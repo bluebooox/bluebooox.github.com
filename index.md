@@ -12,14 +12,18 @@ OSXとMac portsとgemと色んな要素が絡み合い良い具合に悩ませ�
   
 ## 勉強です勉強。色々やらないと覚えません。
   
-* **やっぱりOSXのgitクライアントはSourceTreeが一番かな。**  
+* やっぱりOSXのgitクライアントはSourceTreeが一番かな。
 
-* **やっぱり自宅にMacProが欲しくなってきた。**  
+* やっぱり自宅にMacProが欲しくなってきた。
 
-* **やっぱりMacBookProをFusionDrive化するべきだ。**  
+* やっぱりMacBookProをFusionDrive化するべきだ。
   
-  
-それとやっぱり中免欲しい。
   
 ぐぬぬぬぬ。
-
+  
+  
+<ul class="posts">
+  {% for post in site.posts %}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
