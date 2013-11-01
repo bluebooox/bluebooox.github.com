@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>test</title>
-    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
     $(function() {
 
@@ -25,7 +25,12 @@
                     $("div").html("test");
                 }
             });
+            jump('miil://view/photo/2748060');
         });
+
+
+
+    });
 
     var agent = navigator.userAgent;
     var ios = (agent.indexOf('iPhone') > 0 && agent.indexOf('iPad') == -1) || agent.indexOf('iPod') > 0;
@@ -43,7 +48,7 @@
                         // return false;
                         window.location = url;
                     } else {
-                        alert('twitter t<2000 other');
+                        // alert('twitter t<2000 other');
                         window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
                     }
                 } else {
@@ -57,12 +62,11 @@
         }
 
     }
-    });
     </script>
 </head>
 
 <body>
-    <button onClick="jump('miil://view/photo/2748060');">open</button>
+    <button>open</button>
     <div></div>
 </body>
 
