@@ -27,10 +27,6 @@
             });
         });
 
-
-
-    });
-
     var agent = navigator.userAgent;
     var ios = (agent.indexOf('iPhone') > 0 && agent.indexOf('iPad') == -1) || agent.indexOf('iPod') > 0;
 
@@ -42,14 +38,14 @@
             window.setTimeout(function() {
                 var t = new Date() - checkedAt;
                 if (t < 2000) {
-                    // if(agent.indexOf('Twitter') > 0){
-                    //   // alert(agent);
-                    //   // return false;
-                    //     window.location = url;
-                    //   }else{
-                    // alert('twitter t<2000 other');
-                    window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
-                    // }
+                    if (agent.indexOf('Twitter') > 0) {
+                        // alert(agent);
+                        // return false;
+                        window.location = url;
+                    } else {
+                        alert('twitter t<2000 other');
+                        window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
+                    }
                 } else {
                     window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
                 }
@@ -61,6 +57,7 @@
         }
 
     }
+    });
     </script>
 </head>
 
