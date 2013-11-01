@@ -9,7 +9,7 @@
     $(function() {
 
         $("button").click(function() {
-
+            e.preventDefault();
             $.ajax({
                 dataType: 'jsonp',
                 // callback: 'd',
@@ -46,8 +46,8 @@
                     if (agent.indexOf('Twitter') > 0) {
                         // alert(agent);
                         // return false;
-                        // window.open = url;
-                        webview.loadUrl(url);
+                        window.open = url;
+                        // webview.loadUrl(url);
                     } else {
                         // alert('twitter t<2000 other');
                         window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
@@ -57,7 +57,7 @@
                 }
             }, 1000);
 
-            window.open = url;
+            window.location = url;
         } else if (agent.indexOf('Android')) {
             window.location = 'intent://view/photo/2748060#Intent;scheme=miil;package=com.frogapps.miil;end';
         }
