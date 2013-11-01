@@ -1,77 +1,70 @@
 <!doctype html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <title>test</title>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script>
-    $(function() {
+    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+$(function(){
 
-        $("button").click(function() {
-            var agent = navigator.userAgent;
-            var ios = (agent.indexOf('iPhone') > 0 && agent.indexOf('iPad') == -1) || agent.indexOf('iPod') > 0;
-            var url = 'miil://view/photo/2748060';
+$("button").click(function(){
 
-            jump();
+    $.ajax({
+      dataType: 'jsonp',
+      // callback: 'd',
+      // url: 'http://api.miil.me/api/clubs/737.js',
 
-            $.ajax({
-                dataType: 'jsonp',
-                // callback: 'd',
-                // url: 'http://api.miil.me/api/clubs/737.js',
-
-                // dataType: 'jsonp',
-                url: 'http://api.miil.me/api/photos/2756188.json',
-                // type: 'jsonp',
-                // callback: 'd',
-                success: function(d, s) {
-                    // alert(xhr.status);
-                    // console.log(d);
-                    $("div").html("test");
-                }
-            });
-
-            function jump() {
-
-                var checkedAt = new Date();
-
-                if (ios) {
-                    window.setTimeout(function() {
-                        var t = new Date() - checkedAt;
-                        if (t < 2000) {
-                            if (agent.indexOf('Twitter') > 0) {
-                                // alert(agent);
-                                // return false;
-                                window.location = url;
-                            } else {
-                                // alert('twitter t<2000 other');
-                                window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
-                            }
-                        } else {
-                            window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
-                        }
-                    }, 1000);
-
-                    window.location = url;
-                } else if (agent.indexOf('Android')) {
-                    window.location = 'intent://view/photo/2748060#Intent;scheme=miil;package=com.frogapps.miil;end';
-                }
-
-            }
-
-
-        });
-
-        // onClick="jump('miil://view/photo/2748060');"
-
-
+        // dataType: 'jsonp',
+        url: 'http://api.miil.me/api/photos/2756188.json',
+        // type: 'jsonp',
+        // callback: 'd',
+        success: function(d,s){
+        // alert(xhr.status);
+        // console.log(d);
+        $("div").html("test");
+        }
     });
-    </script>
+});
+
+
+
+});
+
+var agent = navigator.userAgent;
+var ios = (agent.indexOf('iPhone') > 0 && agent.indexOf('iPad') == -1) || agent.indexOf('iPod') > 0;
+
+function jump(url) {
+
+    var checkedAt = new Date();
+
+    if(ios){
+    window.setTimeout(function(){
+      var t = new Date() - checkedAt;
+        if(t < 2000){
+          if(agent.indexOf('Twitter') > 0){
+            // alert(agent);
+            // return false;
+              window.location = url;
+            }else{
+            // alert('twitter t<2000 other');
+              window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
+        }
+      }else{
+          window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
+      }
+    }, 1000);
+
+      window.location = url;
+    }
+    else if(agent.indexOf('Android')) {
+    window.location = 'intent://view/photo/2748060#Intent;scheme=miil;package=com.frogapps.miil;end';
+    }
+
+}
+</script>
 </head>
-
 <body>
-    <button>open</button>
-    <div></div>
+<button onClick="jump('miil://view/photo/2748060');">open</button>
+<div></div>
 </body>
-
 </html>
