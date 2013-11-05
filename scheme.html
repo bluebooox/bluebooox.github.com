@@ -6,63 +6,97 @@
     <title>test</title>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
-    $(function() {
+$(function(){
 
-        $("button").click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                dataType: 'jsonp',
-                // callback: 'd',
-                // url: 'http://api.miil.me/api/clubs/737.js',
+$("button").click(function(){
 
-                // dataType: 'jsonp',
-                url: 'http://api.miil.me/api/photos/2756188.json',
-                // type: 'jsonp',
-                // callback: 'd',
-                success: function(d, s) {
-                    // alert(xhr.status);
-                    // console.log(d);
-                    $("div").html("test");
-                }
-            });
-            jump("var w=window.open();w.location.href='miil://view/photo/2748060'");
-        });
+    $.ajax({
+      dataType: 'jsonp',
+      // callback: 'd',
+      // url: 'http://api.miil.me/api/clubs/737.js',
 
-
-
-    });
-
-    var agent = navigator.userAgent;
-    var ios = (agent.indexOf('iPhone') > 0 && agent.indexOf('iPad') == -1) || agent.indexOf('iPod') > 0;
-
-    function jump(url) {
-
-        var checkedAt = new Date();
-
-        if (ios) {
-            window.setTimeout(function() {
-                var t = new Date() - checkedAt;
-                if (t < 2000) {
-                    if (agent.indexOf('Twitter') > 0) {
-                        // alert(agent);
-                        // return false;
-                        window.location = url;
-                        // webview.loadUrl(url);
-                    } else {
-                        // alert('twitter t<2000 other');
-                        window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
-                    }
-                } else {
-                    window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
-                }
-            }, 1000);
-
-            window.location = url;
-        } else if (agent.indexOf('Android')) {
-            window.location = 'intent://view/photo/2748060#Intent;scheme=miil;package=com.frogapps.miil;end';
+        // dataType: 'jsonp',
+        url: 'http://api.miil.me/api/photos/2756188.json',
+        // type: 'jsonp',
+        // callback: 'd',
+        success: function(d,s){
+        // alert(xhr.status);
+        // console.log(d);
+        $("div").html("test");
         }
+    });
+});
 
+
+
+});
+
+var agent = navigator.userAgent;
+var ios = (agent.indexOf('iPhone') > 0 && agent.indexOf('iPad') == -1) || agent.indexOf('iPod') > 0;
+
+  TwitterAPI.prototype.getRequestToken = function() {
+    var accessor = {
+      consumerSecret: this.consumer.consumerSecret,
+      tokenSecret: ''
+    };
+
+    var message = {
+      method: "GET",
+      action: "http://twitter.com/oauth/request_token",
+      parameters: {
+        oauth_signature_method: "HMAC-SHA1",
+        oauth_consumer_key: this.consumer.consumerKey
+      }
+    };
+    OAuth.setTimestampAndNonce(message);
+    alert(message)
+    OAuth.SignatureMethod.sign(message, accessor);
+    var target = OAuth.addToURL(message.action, message.parameters);
+    var options = {
+      type: message.method,
+      url: target,
+      success: function(d, dt) { /* 返り値からRequest Token/Request Token Secretを取り出して、PINを取得するためのURLを作成 */ },
+    };
+    $.ajax(options); // 送信
+  };
+
+function jump(url) {
+
+    var checkedAt = new Date();
+    // var timerId = setTimeout(timejob, 1000);
+    if(ios){
+        window.setTimeout(function(timejob){
+          var t = new Date() - checkedAt;
+            if(t < 2000){
+             //  if (agent.indexOf('Twitter') > 0){
+                //   window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
+                // // }
+                // // }
+             //  }else{
+              window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
+             //      window.location = url;
+             // return false;
+            // }
+          }
+        }, 1000);
+        // if (agent.indexOf('Twitter') > 0){
+        //  if(t < 2000){
+        //      // window.location = "http://itunes.apple.com/jp/app/id472973118?mt=8";
+        //      window.location = url;
+        //  }
+        // }
+        window.location = url;
+
+        if(agent.indexOf('Twiter') > 0){
+      clearTimeOut(timejob);
+        }
     }
+    else if(agent.indexOf('Android')){
+    window.location = 'intent://view/photo/2748060#Intent;scheme=miil;package=com.frogapps.miil;end';
+    }
+
+}
+
     </script>
 </head>
 
